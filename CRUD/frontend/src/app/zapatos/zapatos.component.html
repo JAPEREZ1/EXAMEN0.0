@@ -1,0 +1,33 @@
+<div class="container">
+  <h1>Fábrica de Zapatos Puma</h1>
+
+  <div class="form-container">
+    <input nz-input placeholder="Modelo" [(ngModel)]="modelo" />
+    <input nz-input type="number" placeholder="Talla" [(ngModel)]="talla" />
+    <input nz-input placeholder="Color" [(ngModel)]="color" />
+    <button nz-button nzType="primary" (click)="agregarZapato()" *ngIf="!editMode">Agregar Zapato</button>
+    <button nz-button nzType="primary" (click)="actualizarZapato()" *ngIf="editMode">Actualizar Zapato</button>
+  </div>
+
+  <nz-table #basicTable [nzData]="zapatos" [nzBordered]="true">
+    <thead>
+      <tr>
+        <th>Modelo</th>
+        <th>Talla</th>
+        <th>Color</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let zapato of zapatos">
+        <td>{{ zapato.modelo }}</td>
+        <td>{{ zapato.talla }}</td>
+        <td>{{ zapato.color }}</td>
+        <td>
+          <button nz-button nzType="link" (click)="editarZapato(zapato)">Editar</button>
+          <button nz-button nzType="link" (click)="eliminarZapato(zapato.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
